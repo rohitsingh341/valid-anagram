@@ -31,6 +31,7 @@ public class ValidAnagram {
 
     //Solution 2 - if interviewer does not favour using inbuilt function as used in above solution
     private static boolean isValidAnagramSolution2(String s1, String s2) {
+        boolean isAnagram = false;
 
         if (s1.length() != s2.length()) {
             return false;
@@ -43,12 +44,14 @@ public class ValidAnagram {
             charStore[s2.charAt(i) - 'a']--;
         }
 
-        for (int n : charStore) {
-            if (n != 0) {
-                return false;
-            }
-        }
+//        for (int n : charStore) {
+//            if (n != 0) {
+//                return false;
+//            }
+//        }
 
-        return true;
+        isAnagram = Arrays.stream(charStore).allMatch(n -> n == 0);
+
+        return isAnagram;
     }
 }
